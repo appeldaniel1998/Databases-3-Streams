@@ -1,6 +1,5 @@
-import javafx.util.Pair;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Avigail on 5/20/2017.
@@ -39,28 +38,20 @@ public class Main {
             );
         }};
 
-        printStudentInfo(students);
+        students.stream().forEach(s -> System.out.println(s.getName() + ": " + s.getGrades().stream().mapToDouble(g -> g.getValue()).average().getAsDouble()));
 
-/*Grisha
-        students.stream().forEach (s-> System.out.println("ha"));
-        students.stream().forEach (s-> s.getGrades().stream().forEach((g) -> System.out.println(g.getValue())));
-        System.out.println("\n===============\n");
-*/
+//        courses.stream()
+//                .forEach(c -> System.out.println(c.getName() + ": " +
+//                        students.stream().forEach(s -> s.getGrades().stream()
+//                                .filter(gr -> gr.getCourse().getName().equals(c))
+//                                .mapToDouble(gr -> gr.getValue()).average().getAsDouble())));
 
-        //students.stream().forEach(s-> System.out.println(s.getName()+", "+s.getGrades().stream().forEach(grade->grade.getValue())));
-        //collectors.summarizingdouble
-    }
+//        students.stream().forEach(s -> System.out.println(s.getGrades().stream()
+//                .filter(gr -> gr.getCourse().getName().equals("Algebra"))
+//                .mapToDouble(gr -> gr.getValue()).average().getAsDouble()));
 
-    public static void printStudentInfo(List<Student> students)
-    {
-        students.stream().forEach (s-> System.out.println(s.getName()+": "+ s.getGrades().stream().mapToDouble(g-> g.getValue()).average().getAsDouble()));
-
-        //sources:
-        //https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
-        //https://www.baeldung.com/java-array-sum-average
+        // sources:
+        // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+        // https://www.baeldung.com/java-array-sum-average
     }
 }
-
-
-
-// filter by course name, su and average per course per student
